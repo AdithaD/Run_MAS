@@ -102,52 +102,57 @@
 
 <div class="bg-gradient-from-b flex justify-center bg-gradient-to-t from-accent to-secondary">
 	<div class="flex min-h-screen w-full flex-col bg-base-100 lg:w-2/3">
-		<div class="flex flex-col gap-4 px-16 pt-16">
+		<div class="flex flex-col gap-4 px-8 pt-8 lg:px-16 lg:pt-16">
 			<h1 class="text-4xl font-bold">Run MAS</h1>
-			<p>
-				Maximum Aerobic Speed (MAS) HIIT is a training method that tailors high-intensity intervals
-				to an individual’s aerobic capacity, ensuring each session is both efficient and effective.
-				MAS represents the lowest running speed at which maximal oxygen uptake (VO₂max) is reached,
-				making it a precise marker for conditioning work. In practice, athletes perform short
-				bursts—often between 15 seconds and 4 minutes—at or above their MAS, interspersed with
-				active or passive recovery intervals. This approach allows for significant time spent near
-				VO₂max without the unsustainable strain of continuous maximal running. Over time, MAS HIIT
-				improves aerobic power, running economy, and lactate threshold, making it a powerful tool
-				for endurance athletes and team-sport players seeking to enhance fitness while minimizing
-				excessive training volume.
-			</p>
+			<details class="rounded-lg border border-neutral p-2">
+				<summary class="text-primary underline" style=""
+					>Click here to learn about MAS training</summary
+				>
+				Maximum Aerobic Speed (MAS) HIIT is a training method that tailors high-intensity intervals to
+				an individual’s aerobic capacity, ensuring each session is both efficient and effective. MAS
+				represents the lowest running speed at which maximal oxygen uptake (VO₂max) is reached, making
+				it a precise marker for conditioning work. In practice, athletes perform short bursts—often between
+				15 seconds and 4 minutes—at or above their MAS, interspersed with active or passive recovery
+				intervals. This approach allows for significant time spent near VO₂max without the unsustainable
+				strain of continuous maximal running. Over time, MAS HIIT improves aerobic power, running economy,
+				and lactate threshold, making it a powerful tool for endurance athletes and team-sport players
+				seeking to enhance fitness while minimizing excessive training volume.
+			</details>
+
+			<div class="divider"></div>
+			<h2 class="text-2xl font-bold">MAS Speed Calculator</h2>
 			<p>
 				The provided distance is your goal distance to meet in the alloted time. Try to reach this
 				distance consistently each rep right at the end of the duration. Once you're finding this
 				too easy, run another benchmark run.
 			</p>
-			<div class="divider"></div>
-			<h2 class="text-2xl font-bold">MAS Speed Calculator</h2>
 			<p>Conduct a 1.6k run benchmark time and input your result below.</p>
-			<form class="flex gap-4">
-				<label for="min" class="input">
-					<input
-						type="number"
-						name="min"
-						id="min"
-						min="0"
-						placeholder="Minutes"
-						bind:value={benchMins}
-					/>
-					<span class="label">Minutes</span>
-				</label>
-				<label for="sec" class="input">
-					<input
-						type="number"
-						name="sec"
-						id="sec"
-						min="0"
-						max="59"
-						placeholder="Seconds"
-						bind:value={benchSeconds}
-					/>
-					<span class="label">Seconds</span>
-				</label>
+			<form class="flex flex-col gap-4 lg:flex-row">
+				<div class="flex gap-4">
+					<label for="min" class="input">
+						<input
+							type="number"
+							name="min"
+							id="min"
+							min="0"
+							placeholder="Minutes"
+							bind:value={benchMins}
+						/>
+						<span class="label">Minutes</span>
+					</label>
+					<label for="sec" class="input">
+						<input
+							type="number"
+							name="sec"
+							id="sec"
+							min="0"
+							max="59"
+							placeholder="Seconds"
+							bind:value={benchSeconds}
+						/>
+						<span class="label">Seconds</span>
+					</label>
+				</div>
 				<button class="btn btn-primary" onclick={calculateSpeed}>Calculate!</button>
 			</form>
 			{#if speed}
@@ -162,8 +167,11 @@
 							<div class="card-title flex justify-between">
 								<div class="font-bold">{name}</div>
 								{#if speed}
-									<div class="text-2xl font-bold">
-										{(speed * intensity * repDuration).toFixed(0)} m / rep
+									<div class="">
+										<span class="text-2xl font-bold text-primary"
+											>{(speed * intensity * repDuration).toFixed(0)} m</span
+										>
+										/ rep
 									</div>
 								{/if}
 							</div>
